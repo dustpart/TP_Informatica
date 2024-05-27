@@ -61,44 +61,17 @@ void LeerTiempos(){
     float segundos;
     char etapa[41];
     FILE *ArchivoTiempos;
-
-    /**
-    Para abrir un archivo se utiliza la función fopen, que recibirá el nombre del archivo
-con su ruta y el modo en el cual será abierto:
-    ->r para lectura -por read-
-    ->w para escritura -por write-
-    ->a para agregado -por append-
-    ->a+ para lectura y posterior agregado
-    **/
-
-    ArchivoTiempos = fopen("tiempos2.txt","r");
+    ArchivoTiempos = fopen("tiempos.txt","r");
     if (ArchivoTiempos == NULL) {
         printf("Error: no se pudo abrir el archivo tiempos.txt.-\n");
         exit(1);
     }
-
-    /**
-    Para leer y escribir de un archivo que haya sido previamente abierto, se utilizan las
-funciones fscanf y fprintf, que funcionan del mismo modo que las funciones entrada
-y salida previamente estudiadas, sólo que recibirán además como primer parámetro la
-referencia al archivo con el que deseamos trabajar.
-    **/
-
-    ///Lectura del primer archivo
-
-    fscanf(ArchivoTiempos,"%d %d %d %.3f %d %s",&num_auto, &vueltas, &minutos, &segundos, &n_carrera, etapa);       //lee la primera linea del archivo.
+    fscanf(ArchivoTiempos,"%d %d %d %f %d %s",&num_auto, &vueltas, &minutos, &segundos, &n_carrera, etapa);
     while(!(feof(ArchivoTiempos))){
         printf("%d\t %d\t %d\t %.3f\t %d\t %s\t \n", num_auto, vueltas, minutos, segundos, n_carrera, etapa);
-        fscanf(ArchivoTiempos,"%d %d %d %.3f %d %s",&num_auto, &vueltas, &minutos, &segundos, &n_carrera, etapa);
+        fscanf(ArchivoTiempos,"%d %d %d %f %d %s",&num_auto, &vueltas, &minutos, &segundos, &n_carrera, etapa);
     }
-
-    /**
-    Finalmente, luego de haber realizado todas las operaciones que se deseen sobre un archivo,
-este debe ser cerrado utilizando la función fclose
-que recibe una referencia al archivo que se desea cerrar
-    **/
     fclose(ArchivoTiempos);
-
 }
 
 //CM_wsw
